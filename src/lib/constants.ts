@@ -1,0 +1,12 @@
+export const STORE_ID='default-store-001';
+export const STORE_NAME='Site Services Workshop';
+export const STORE_NAME_HI='साइट सेवा कार्यशाला';
+export const APP_NAME='Al Laith Workshop Inventory';
+export const ROLES={ADMIN:'admin',WORKER:'worker'} as const;
+export type Role=typeof ROLES[keyof typeof ROLES];
+export const SYNC_INTERVAL_MS=5*60*1000;
+export const MAX_PHOTO_WIDTH=1200;
+export const PHOTO_QUALITY=0.8;
+export const THUMBNAIL_WIDTH=120;
+export const CATEGORY_COLORS:Record<string,string>={electrical:'#F59E0B',dispensers:'#14B8A6',chemicals:'#8B5CF6',bins:'#6B7280',ac:'#3B82F6',signs:'#F43F5E',plumbing:'#06B6D4',default:'#64748B'};
+export const CATEGORY_ICONS:Record<string,string>={electrical:'zap',dispensers:'droplets',chemicals:'flask-conical',bins:'trash-2',ac:'snowflake',signs:'signpost',plumbing:'wrench',bulbs:'lightbulb',soap:'droplets',switches:'toggle-left',default:'package'};

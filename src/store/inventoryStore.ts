@@ -1,0 +1,3 @@
+import {create} from 'zustand';
+interface InventoryUIState{searchQuery:string;selectedCategoryId:string|null;sortBy:'name'|'quantity'|'updatedAt';sortDir:'asc'|'desc';setSearch:(q:string)=>void;setCategory:(id:string|null)=>void;setSort:(by:'name'|'quantity'|'updatedAt',dir?:'asc'|'desc')=>void}
+export const useInventoryStore=create<InventoryUIState>((set)=>({searchQuery:'',selectedCategoryId:null,sortBy:'name',sortDir:'asc',setSearch:(q)=>set({searchQuery:q}),setCategory:(id)=>set({selectedCategoryId:id}),setSort:(by,dir)=>set((s)=>({sortBy:by,sortDir:dir??(s.sortBy===by&&s.sortDir==='asc'?'desc':'asc')}))}));

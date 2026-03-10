@@ -1,0 +1,113 @@
+{
+  "app": {
+    "name": "Workshop Inventory",
+    "offline": "Offline Mode",
+    "syncing": "Syncing...",
+    "lastSync": "Last sync: {{time}}"
+  },
+  "auth": {
+    "title": "Enter PIN",
+    "placeholder": "Enter your PIN",
+    "submit": "Login",
+    "error": "Invalid PIN",
+    "logout": "Logout",
+    "admin": "Admin",
+    "worker": "Worker"
+  },
+  "nav": {
+    "inventory": "Inventory",
+    "addItem": "Add Item",
+    "import": "Import",
+    "export": "Export",
+    "history": "History"
+  },
+  "inventory": {
+    "title": "Inventory",
+    "search": "Search items...",
+    "allCategories": "All",
+    "noItems": "No items found",
+    "items": "items",
+    "quantity": "Qty",
+    "condition": "Condition"
+  },
+  "item": {
+    "detail": "Item Detail",
+    "name": "Name",
+    "category": "Category",
+    "quantity": "Quantity",
+    "condition": "Condition",
+    "remarks": "Remarks",
+    "photo": "Photo",
+    "addPhoto": "Add Photo",
+    "takePhoto": "Take Photo",
+    "choosePhoto": "Choose Photo",
+    "stockIn": "Stock In",
+    "stockOut": "Stock Out",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "reason": "Reason",
+    "used": "Used on site",
+    "received": "Received new",
+    "damaged": "Damaged",
+    "returned": "Returned",
+    "adjustment": "Adjustment"
+  },
+  "admin": {
+    "addItem": "Add New Item",
+    "editItem": "Edit Item",
+    "shortName": "Short Name",
+    "fullName": "Full Name",
+    "hindiName": "Hindi Name (optional)",
+    "selectCategory": "Select Category",
+    "sku": "SKU (optional)",
+    "initialQty": "Initial Quantity",
+    "assetDesc": "Asset Description",
+    "save": "Save Item",
+    "saving": "Saving..."
+  },
+  "export": {
+    "title": "Export Inventory",
+    "excel": "Export as Excel",
+    "sheets": "Export to Google Sheets",
+    "exporting": "Exporting...",
+    "success": "Export complete!",
+    "error": "Export failed"
+  },
+  "import": {
+    "title": "Import from ERP",
+    "dropzone": "Drop Excel file here or tap to browse",
+    "selectFile": "Select File",
+    "validating": "Validating...",
+    "preview": "Import Preview",
+    "mode": "Import Mode",
+    "fullSync": "Full Sync",
+    "fullSyncDesc": "Add new, update existing, remove missing",
+    "addUpdate": "Add & Update Only",
+    "addUpdateDesc": "Add new and update existing only",
+    "new": "New",
+    "update": "Updated",
+    "same": "Unchanged",
+    "removed": "Will Remove",
+    "execute": "Execute Import",
+    "importing": "Importing...",
+    "success": "Import complete!",
+    "error": "Import failed",
+    "added": "Added",
+    "updated": "Updated",
+    "unchanged": "Unchanged",
+    "removed_count": "Removed"
+  },
+  "history": {
+    "title": "Change History",
+    "noHistory": "No changes recorded"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "back": "Back",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  }
+}

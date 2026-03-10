@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import {useState} from 'react';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import AuthGuard from './components/auth/AuthGuard';
+import Header from './components/layout/Header';
+import OfflineBanner from './components/layout/OfflineBanner';
+import LanguageToggle from './components/layout/LanguageToggle';
+import NavigationDrawer from './components/layout/NavigationDrawer';
+import InventoryGrid from './components/inventory/InventoryGrid';
+import ItemDetail from './components/inventory/ItemDetail';
+import AddItemForm from './components/admin/AddItemForm';
+import ImportScreen from './components/import/ImportScreen';
+import ExportScreen from './components/export/ExportScreen';
+import HistoryView from './components/history/HistoryView';
+import {useOnlineStatus} from './hooks/useOnlineStatus';
+import './i18n/config';
+export default function App(){
+  const[drawerOpen,setDrawerOpen]=useState(false);
+  useOnlineStatus();
+  return(<BrowserRouter><AuthGuard><div className="min-h-screen bg-slate-50">
+    <Header onMenuToggle={()=>setDrawerOpen(true)}/><OfflineBanner/>
+    <NavigationDrawer isOpen={drawerOpen} onClose={()=>setDrawerOpen(false)}/>
+    <main><Routes>
+      <Route path="/" element={<InventoryGrid/>}/>
+      <Route path="/item/:id" element={<ItemDetail/>}/>
+      <Route path="/admin/add" element={<AddItemForm/>}/>
+      <Route path="/admin/edit/:id" element={<AddItemForm/>}/>
+      <Route path="/import" element={<ImportScreen/>}/>
+      <Route path="/export" element={<ExportScreen/>}/>
+      <Route path="/history" element={<HistoryView/>}/>
+    </Routes></main>
+    <LanguageToggle/>
+  </div></AuthGuard></BrowserRouter>);
 }
-
-export default App

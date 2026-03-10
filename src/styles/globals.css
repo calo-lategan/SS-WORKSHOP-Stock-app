@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@layer base{body{font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background-color:#F8FAFC;color:#1E293B}:lang(hi){font-family:'Noto Sans Devanagari','Inter',sans-serif;line-height:1.6;font-size:105%}}
+@layer utilities{.scrollbar-hide::-webkit-scrollbar{display:none}.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}}
+@keyframes slide-up{from{transform:translateY(100%)}to{transform:translateY(0)}}.animate-slide-up{animation:slide-up .2s ease-out}

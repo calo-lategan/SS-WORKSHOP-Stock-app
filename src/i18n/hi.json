@@ -1,0 +1,113 @@
+{
+  "app": {
+    "name": "कार्यशाला सूची",
+    "offline": "ऑफलाइन मोड",
+    "syncing": "सिंक हो रहा है...",
+    "lastSync": "अंतिम सिंक: {{time}}"
+  },
+  "auth": {
+    "title": "पिन दर्ज करें",
+    "placeholder": "अपना पिन दर्ज करें",
+    "submit": "लॉगिन",
+    "error": "गलत पिन",
+    "logout": "लॉगआउट",
+    "admin": "एडमिन",
+    "worker": "कर्मचारी"
+  },
+  "nav": {
+    "inventory": "सूची",
+    "addItem": "आइटम जोड़ें",
+    "import": "आयात",
+    "export": "निर्यात",
+    "history": "इतिहास"
+  },
+  "inventory": {
+    "title": "सूची",
+    "search": "आइटम खोजें...",
+    "allCategories": "सभी",
+    "noItems": "कोई आइटम नहीं मिला",
+    "items": "आइटम",
+    "quantity": "मात्रा",
+    "condition": "स्थिति"
+  },
+  "item": {
+    "detail": "आइटम विवरण",
+    "name": "नाम",
+    "category": "श्रेणी",
+    "quantity": "मात्रा",
+    "condition": "स्थिति",
+    "remarks": "टिप्पणी",
+    "photo": "फोटो",
+    "addPhoto": "फोटो जोड़ें",
+    "takePhoto": "फोटो लें",
+    "choosePhoto": "फोटो चुनें",
+    "stockIn": "स्टॉक इन",
+    "stockOut": "स्टॉक आउट",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "reason": "कारण",
+    "used": "साइट पर उपयोग",
+    "received": "नया प्राप्त",
+    "damaged": "क्षतिग्रस्त",
+    "returned": "वापस",
+    "adjustment": "समायोजन"
+  },
+  "admin": {
+    "addItem": "नया आइटम जोड़ें",
+    "editItem": "आइटम संपादित करें",
+    "shortName": "संक्षिप्त नाम",
+    "fullName": "पूरा नाम",
+    "hindiName": "हिंदी नाम (वैकल्पिक)",
+    "selectCategory": "श्रेणी चुनें",
+    "sku": "SKU (वैकल्पिक)",
+    "initialQty": "प्रारंभिक मात्रा",
+    "assetDesc": "संपत्ति विवरण",
+    "save": "आइटम सहेजें",
+    "saving": "सहेज रहा है..."
+  },
+  "export": {
+    "title": "सूची निर्यात करें",
+    "excel": "Excel में निर्यात",
+    "sheets": "Google Sheets में निर्यात",
+    "exporting": "निर्यात हो रहा है...",
+    "success": "निर्यात पूर्ण!",
+    "error": "निर्यात विफल"
+  },
+  "import": {
+    "title": "ERP से आयात",
+    "dropzone": "Excel फाइल यहां डालें या ब्राउज़ करें",
+    "selectFile": "फाइल चुनें",
+    "validating": "फाइल जांच...",
+    "preview": "आयात पूर्वावलोकन",
+    "mode": "आयात मोड",
+    "fullSync": "पूर्ण सिंक",
+    "fullSyncDesc": "नया जोड़ें, मौजूदा अपडेट, गायब हटाएं",
+    "addUpdate": "जोड़ें और अपडेट",
+    "addUpdateDesc": "केवल नए जोड़ें और मौजूदा अपडेट",
+    "new": "नया",
+    "update": "अपडेट",
+    "same": "अपरिवर्तित",
+    "removed": "हटाया जाएगा",
+    "execute": "आयात करें",
+    "importing": "आयात हो रहा है...",
+    "success": "आयात पूर्ण!",
+    "error": "आयात विफल",
+    "added": "जोड़े गए",
+    "updated": "अपडेट किए",
+    "unchanged": "अपरिवर्तित",
+    "removed_count": "हटाए गए"
+  },
+  "history": {
+    "title": "परिवर्तन इतिहास",
+    "noHistory": "कोई परिवर्तन नहीं"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "कुछ गलत हुआ",
+    "retry": "पुनः प्रयास",
+    "back": "वापस",
+    "confirm": "पुष्टि करें",
+    "cancel": "रद्द करें"
+  }
+}
