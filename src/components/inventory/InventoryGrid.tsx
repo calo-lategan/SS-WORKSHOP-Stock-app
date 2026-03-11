@@ -4,7 +4,6 @@ import {v4 as uuid} from 'uuid';
 import {useItems} from '../../hooks/useItems';
 import {useStockAdjust} from '../../hooks/useStockAdjust';
 import {db} from '../../db/database';
-import {useAuthStore} from '../../store/authStore';
 import ItemCard from './ItemCard';
 import SearchBar from './SearchBar';
 import CategoryTabs from './CategoryTabs';
@@ -15,7 +14,6 @@ export default function InventoryGrid(){
   const{t}=useTranslation();
   const items=useItems();
   const{adjust}=useStockAdjust();
-  const{storeId}=useAuthStore();
   const[adj,setAdj]=useState<Item|null>(null);
   const[delId,setDelId]=useState<string|null>(null);
   const open=(id:string)=>{const i=items?.find(x=>x.id===id);if(i)setAdj(i)};
