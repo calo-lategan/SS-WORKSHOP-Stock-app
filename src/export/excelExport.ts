@@ -11,7 +11,11 @@ export async function exportToExcel():Promise<void>{
       if(def.generate){row[col]=def.generate(index)}
       else if(def.passthrough&&item.erpPassthrough){row[col]=item.erpPassthrough[col]??def.default??''}
       else if(def.field){let v=(item as any)[def.field];if(def.transform)v=def.transform(v);row[col]=v??def.default??''}
-      else{row[col]=def.¥‚à¤šà¥€ à¤¨à¤¿‰euel():Promistem);ray();
-  const wb=XLSX.utbook_new(ay'});const wb=XLSX.ut/en.heet   "sview(,{heartOrMAP,ERP_COLUray() wb=XLSX.utbook_umnendt   "svwb,w(,'hop Inventray() wb=Xwr v=eERPFwb,'
-  "inven-ion ex-'+now=new Date().toISOStri'.').slic10)+'.om 'xies');
+      else{row[col]=def.default??''}
+    }
+    return row;
+  });
+  const wb=XLSX.utils.book_new();const ws=XLSX.utils.json_to_sheet(rows,{header:ERP_COLUMNS});
+  XLSX.utils.book_append_sheet(wb,ws,'Inventory');
+  XLSX.writeFile(wb,'inventory-export-'+new Date().toISOString().slice(0,10)+'.xlsx');
 }
