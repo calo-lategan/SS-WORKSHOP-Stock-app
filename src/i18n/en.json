@@ -66,7 +66,9 @@
     "initialQty": "Initial Quantity",
     "assetDesc": "Asset Description",
     "save": "Save Item",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "uploading": "Uploading...",
+    "changPhoto": "Change Photo"
   },
   "dashboard": {
     "title": "Dashboard",
