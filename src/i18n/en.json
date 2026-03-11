@@ -19,7 +19,9 @@
     "addItem": "Add Item",
     "import": "Import",
     "export": "Export",
-    "history": "History"
+    "history": "History",
+    "dashboard": "Dashboard",
+    "categories": "Categories"
   },
   "inventory": {
     "title": "Inventory",
@@ -45,7 +47,7 @@
     "stockOut": "Stock Out",
     "save": "Save",
     "cancel": "Cancel",
-    "delete": "Delete",
+    "delete": "Delete Item",
     "reason": "Reason",
     "used": "Used on site",
     "received": "Received new",
@@ -57,14 +59,27 @@
     "addItem": "Add New Item",
     "editItem": "Edit Item",
     "shortName": "Short Name",
-    "fullName": "Full Name",
-    "hindiName": "Hindi Name (optional)",
+    "fullName": "Full Name (English)",
+    "hindiName": "Hindi Name",
     "selectCategory": "Select Category",
     "sku": "SKU (optional)",
     "initialQty": "Initial Quantity",
     "assetDesc": "Asset Description",
     "save": "Save Item",
     "saving": "Saving..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "maintenance": "Maintenance",
+    "new": "New (7d)",
+    "old": "Old (30d+)",
+    "confirmDelete": "Are you sure you want to delete this item? This cannot be undone.",
+    "confirmDeleteCat": "Delete this category?",
+    "categories": "Manage Categories",
+    "catName": "Category Name (English)",
+    "catNameHi": "Category Name (Hindi)",
+    "addCategory": "Add Category",
+    "translate": "Translate"
   },
   "export": {
     "title": "Export Inventory",

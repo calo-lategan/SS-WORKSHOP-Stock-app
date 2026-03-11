@@ -8,6 +8,8 @@ import NavigationDrawer from './components/layout/NavigationDrawer';
 import InventoryGrid from './components/inventory/InventoryGrid';
 import ItemDetail from './components/inventory/ItemDetail';
 import AddItemForm from './components/admin/AddItemForm';
+import Dashboard from './components/admin/Dashboard';
+import CategoryManager from './components/admin/CategoryManager';
 import ImportScreen from './components/import/ImportScreen';
 import ExportScreen from './components/export/ExportScreen';
 import HistoryView from './components/history/HistoryView';
@@ -24,6 +26,8 @@ export default function App(){
       <Route path="/item/:id" element={<ItemDetail/>}/>
       <Route path="/admin/add" element={<AddItemForm/>}/>
       <Route path="/admin/edit/:id" element={<AddItemForm/>}/>
+      <Route path="/admin/dashboard" element={<Dashboard/>}/>
+      <Route path="/admin/categories" element={<CategoryManager/>}/>
       <Route path="/import" element={<ImportScreen/>}/>
       <Route path="/export" element={<ExportScreen/>}/>
       <Route path="/history" element={<HistoryView/>}/>

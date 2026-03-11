@@ -1,16 +1,19 @@
 import {useNavigate} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
-import {Minus,Plus} from 'lucide-react';
+import {Minus,Plus,Trash2} from 'lucide-react';
 import PhotoPlaceholder from './PhotoPlaceholder';
+import {useAuthStore} from '../../store/authStore';
 import type {Item} from '../../db/database';
 
-export default function ItemCard({item,onAdjust}:{item:Item;onAdjust:(id:string,delta:number)=>void}){
+export default function ItemCard({item,onAdjust,onDelete}:{item:Item;onAdjust:(id:string,delta:number)=>void;onDelete?:(id:string)=>void}){
   const{i18n}=useTranslation();
   const nav=useNavigate();
+  const{role}=useAuthStore();
   const hi=i18n.language==='hi';
   const name=hi&&item.nameHi?item.nameHi:item.shortName||item.name;
   return(
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden active:scale-[0.98] transition-transform">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden active:scale-[0.98] transition-transform relative">
+      {role==='admin'&&onDelete&&<button onClick={e=>{e.stopPropagation();onDelete(item.id)}} className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center text-red-500"><Trash2 size={14}/></button>}
       <div onClick={()=>nav('/item/'+item.id)} className="cursor-pointer p-3 pb-2">
         <PhotoPlaceholder photoThumbnail={item.photoThumbnail} name={item.name} size="lg"/>
         <h3 className="font-medium text-gray-800 mt-2 text-sm leading-tight line-clamp-2 min-h-[2.5rem]">{name}</h3>

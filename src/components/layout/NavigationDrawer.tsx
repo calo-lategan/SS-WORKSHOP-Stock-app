@@ -1,11 +1,13 @@
 import {useTranslation} from 'react-i18next';
 import {useNavigate,useLocation} from 'react-router-dom';
-import {LayoutGrid,PlusCircle,Upload,Download,History,X} from 'lucide-react';
+import {LayoutGrid,PlusCircle,Upload,Download,History,X,BarChart3,Tags} from 'lucide-react';
 import {useAuthStore} from '../../store/authStore';
 
 const NAV=[
   {key:'inventory',path:'/',icon:LayoutGrid},
+  {key:'dashboard',path:'/admin/dashboard',icon:BarChart3,adminOnly:true},
   {key:'addItem',path:'/admin/add',icon:PlusCircle,adminOnly:true},
+  {key:'categories',path:'/admin/categories',icon:Tags,adminOnly:true},
   {key:'import',path:'/import',icon:Upload,adminOnly:true},
   {key:'export',path:'/export',icon:Download},
   {key:'history',path:'/history',icon:History},

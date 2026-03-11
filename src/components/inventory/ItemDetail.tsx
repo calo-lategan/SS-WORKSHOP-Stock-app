@@ -2,7 +2,8 @@ import {useState} from 'react';
 import {useParams,useNavigate} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {useLiveQuery} from 'dexie-react-hooks';
-import {ArrowLeft,Edit,Minus,Plus} from 'lucide-react';
+import {ArrowLeft,Edit,Minus,Plus,Trash2} from 'lucide-react';
+import {v4 as uuid} from 'uuid';
 import {db} from '../../db/database';
 import {useStockAdjust} from '../../hooks/useStockAdjust';
 import {useAuthStore} from '../../store/authStore';
@@ -18,17 +19,27 @@ export default function ItemDetail(){
   const{role}=useAuthStore();
   const{adjust}=useStockAdjust();
   const[show,setShow]=useState(false);
+  const[showDel,setShowDel]=useState(false);
   const hi=i18n.language==='hi';
   const item=useLiveQuery(()=>id?db.items.get(id):undefined,[id]);
   const history=useLiveQuery(()=>id?db.changeLog.where('itemId').equals(id).reverse().sortBy('createdAt'):[],[id]);
   if(!item)return <div className="p-4 text-center text-gray-400">{t('common.loading')}</div>;
   const name=hi&&item.nameHi?item.nameHi:item.name;
+  const doDelete=async()=>{
+    const now=new Date().toISOString();
+    await db.items.update(item.id,{deletedAt:now,syncStatus:'pending'});
+    await db.pendingSync.add({id:uuid(),table:'items',recordId:item.id,operation:'delete',data:{deletedAt:now},createdAt:now,retries:0} as any);
+    nav('/');
+  };
   return(
     <div className="pb-20">
       <div className="sticky top-14 z-30 bg-white border-b px-4 py-3 flex items-center gap-3">
         <button onClick={()=>nav(-1)} className="p-1 rounded-lg hover:bg-gray-100"><ArrowLeft size={22}/></button>
         <h2 className="font-semibold text-lg truncate flex-1">{name}</h2>
-        {role==='admin'&&<button onClick={()=>nav('/admin/edit/'+id)} className="p-2 rounded-lg hover:bg-gray-100"><Edit size={20} className="text-blue-600"/></button>}
+        {role==='admin'&&<>
+          <button onClick={()=>nav('/admin/edit/'+id)} className="p-2 rounded-lg hover:bg-gray-100"><Edit size={20} className="text-blue-600"/></button>
+          <button onClick={()=>setShowDel(true)} className="p-2 rounded-lg hover:bg-red-50"><Trash2 size={20} className="text-red-500"/></button>
+        </>}
       </div>
       <div className="p-4 space-y-4">
         <PhotoPlaceholder photoThumbnail={item.photoThumbnail} name={item.name} size="lg"/>
@@ -53,6 +64,11 @@ export default function ItemDetail(){
         </div>}
       </div>
       {show&&<StockAdjuster itemName={name} currentQty={item.quantity} onConfirm={async(d,r)=>{await adjust(item.id,d,r);setShow(false)}} onCancel={()=>setShow(false)}/>}
+      {showDel&&<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"><div className="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 space-y-4">
+        <h3 className="font-semibold text-lg text-red-600">{t('item.delete')}</h3>
+        <p className="text-gray-600 text-sm">{t('dashboard.confirmDelete')}</p>
+        <div className="flex gap-3"><button onClick={()=>setShowDel(false)} className="flex-1 py-2.5 border rounded-xl">{t('common.cancel')}</button><button onClick={doDelete} className="flex-1 py-2.5 bg-red-600 text-white rounded-xl">{t('common.confirm')}</button></div>
+      </div></div>}
     </div>
   );
 }
