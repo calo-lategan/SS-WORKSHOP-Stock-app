@@ -6,7 +6,6 @@ import {v4 as uuid} from 'uuid';
 import {db} from '../../db/database';
 import {useCategories} from '../../hooks/useCategories';
 import {useAuthStore} from '../../store/authStore';
-import {CATEGORY_COLORS} from '../../lib/constants';
 
 const COLORS=['#F59E0B','#14B8A6','#8B5CF6','#6B7280','#3B82F6','#F43F5E','#06B6D4','#EC4899','#10B981','#EF4444'];
 
