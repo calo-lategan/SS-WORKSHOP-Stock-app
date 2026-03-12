@@ -1,4 +1,4 @@
-import Dexie, { Table } from 'dexie';
+import Dexie, {type EntityTable} from 'dexie';
 
 export interface Item {
   id: string;
@@ -11,23 +11,18 @@ export interface Item {
   condition?: string;
   remarks?: string;
   sku?: string;
-  photoPath?: string;
   photoThumbnail?: string;
-  photoBlob?: Blob;
-  groupDescription: string;
-  subGroupDescription?: string;
+  groupDescription?: string;
   categoryDescription?: string;
-  subCategoryDescription?: string;
   assetDescription?: string;
-  assetCost?: number;
   erpPassthrough?: Record<string, any>;
   createdBy: string;
-  lastModifiedBy?: string;
+  lastModifiedBy: string;
   createdAt: string;
   updatedAt: string;
+  deletedAt?: string;
   syncVersion: number;
   syncStatus: 'synced' | 'pending' | 'conflict';
-  deletedAt?: string;
 }
 
 export interface Category {
@@ -43,23 +38,21 @@ export interface Category {
   syncStatus: 'synced' | 'pending';
 }
 
-export interface ChangeLogEntry {
+export interface ChangeLog {
   id: string;
-  storeId: string;
   itemId: string;
-  action: 'increment' | 'decrement' | 'create' | 'edit' | 'delete';
-  quantityBefore?: number;
-  quantityAfter?: number;
+  action: 'increment' | 'decrement' | 'set' | 'create' | 'update' | 'delete';
   quantityChange?: number;
+  previousQty?: number;
+  newQty?: number;
   reason?: string;
   performedBy: string;
   createdAt: string;
-  synced: boolean;
 }
 
 export interface PendingSync {
   id: string;
-  table: 'items' | 'change_log' | 'categories';
+  table: string;
   recordId: string;
   operation: 'insert' | 'update' | 'delete';
   data: any;
@@ -67,46 +60,19 @@ export interface PendingSync {
   retries: number;
 }
 
-export interface PhotoUpload {
-  id: string;
-  itemId: string;
-  blob: Blob;
-  status: 'pending' | 'uploading' | 'success' | 'failed';
-  retries: number;
-  createdAt: string;
-  error?: string;
-}
+const database = new Dexie('AlLaithInventory') as Dexie & {
+  items: EntityTable<Item, 'id'>;
+  categories: EntityTable<Category, 'id'>;
+  changeLog: EntityTable<ChangeLog, 'id'>;
+  pendingSync: EntityTable<PendingSync, 'id'>;
+};
 
-class InventoryDatabase extends Dexie {
-  items!: Table<Item>;
-  categories!: Table<Category>;
-  changeLog!: Table<ChangeLogEntry>;
-  pendingSync!: Table<PendingSync>;
-  photoUploads!: Table<PhotoUpload>;
+database.version(2).stores({
+  items: 'id, storeId, categoryId, name, shortName, sku, syncStatus, deletedAt, updatedAt',
+  categories: 'id, storeId, path, sortOrder',
+  changeLog: 'id, itemId, createdAt',
+  pendingSync: 'id, table, recordId, createdAt'
+});
 
-  constructor() {
-    super('AlLaithInventory');
-
-    this.version(1).stores({
-      items: 'id, storeId, categoryId, name, shortName, updatedAt, syncStatus, [storeId+syncStatus], [storeId+categoryId]',
-      categories: 'id, storeId, path, parentId, [storeId+parentId]',
-      changeLog: 'id, storeId, itemId, createdAt, synced, [itemId+createdAt]',
-      pendingSync: 'id, table, createdAt, [table+createdAt]',
-      photoUploads: 'id, itemId, status, [status+createdAt]',
-    });
-
-    this.version(2).stores({
-      items: 'id, storeId, categoryId, name, shortName, updatedAt, syncStatus, [storeId+syncStatus], [storeId+categoryId]',
-      categories: 'id, storeId, path, parentId, [storeId+parentId]',
-      changeLog: 'id, storeId, itemId, createdAt, synced, [itemId+createdAt]',
-      pendingSync: 'id, table, createdAt, [table+createdAt]',
-      photoUploads: 'id, itemId, status, [status+createdAt]',
-    }).upgrade(tx => {
-      return tx.table('items').toCollection().modify(item => {
-        if (!item.erpPassthrough) item.erpPassthrough = {};
-      });
-    });
-  }
-}
-
-export const db = new InventoryDatabase();
+export type ChangeLogEntry = ChangeLog;
+export {database as db};
